@@ -1,21 +1,22 @@
 /*
 ============================================================================
-Name : 3.c
+Name : 4.c
 Author : Shubham Suthar
-Description : Write a program to create a file and print the file descriptor value. Use creat ( ) system call
+Description : Write a program to open an existing file with read write mode. Try O_EXCL flag also.
 
 Date: 9th Sept, 2023.
 ============================================================================
 */
 
 #include<stdio.h>
+#include<sys/stat.h>
+#include<sys/types.h>
 #include<fcntl.h>
 
-int main(){
-	int fd;
-	fd=creat("text.txt",O_RDONLY|O_WRONLY);
-	printf("fd = %d",fd);
+void main(){
+	int fd=open("test.txt",O_RDONLY|O_CREAT|O_EXCL);
+	printf("fd: %d",fd);
 	if(fd==-1){
-		printf("File Already exist");
+		printf("Error");
 	}
 }
